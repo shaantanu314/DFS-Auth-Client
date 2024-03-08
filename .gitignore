@@ -1,0 +1,18 @@
+# Dependency directories
+node_modules/
+dist/
+
+# Environment variables and keys
+.env
+keys/
+
+# Build files
+/build
+
+# Temporary files
+/tmp
+# IDE/Editor specific files
+.vscode/
+*.lock
+# OS generated files
+.DS_Store
