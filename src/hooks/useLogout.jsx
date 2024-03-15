@@ -1,10 +1,10 @@
-import { useAuth } from "./useAuth";
-import { logout } from "../utils/logout";
+import { useAuth } from './useAuth';
+import { logout } from '../utils/logout';
 
 export const useLogout = () => {
-  const { authUrl, setAuthentication } = useAuth();
+  const { authURL, setAuthentication } = useAuth();
 
   return () => {
-    logout({ authUrl, setAuthentication });
+    return logout({ authURL, setAuthentication });
   };
 };

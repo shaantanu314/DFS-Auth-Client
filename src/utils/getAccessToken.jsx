@@ -1,28 +1,31 @@
-import axios from "axios";
+import axios from 'axios';
 
-import { REFRESH_TOKEN_URL } from "../constants";
+import { REFRESH_TOKEN_URL } from '../constants';
 
 const getAccessToken = (authURL, setAuthentication) =>
   axios
-    .get(authURL + REFRESH_TOKEN_URL)
-    .then((res) => {
+    .get(authURL + REFRESH_TOKEN_URL, { withCredentials: true })
+    .then(res => {
       if (res.status !== 200) {
         throw new Error(res.data.message);
       }
 
-      const { user, accessToken } = req.data.data;
+      const { user, user_permissions, accessToken } = res.data.data;
 
-      setAuthentication((prev) => ({
+      setAuthentication(prev => ({
         ...prev,
         isInitialized: true,
-        user,
+        user: {
+          ...user,
+          user_permissions,
+        },
         accessToken,
       }));
     })
-    .catch((err) => {
-      console.log("DFS Auth Error : ", err.message);
+    .catch(err => {
+      console.log('DFS Auth Error : ', err.message);
 
-      setAuthentication((prev) => ({
+      setAuthentication(prev => ({
         ...prev,
         isInitialized: true,
       }));

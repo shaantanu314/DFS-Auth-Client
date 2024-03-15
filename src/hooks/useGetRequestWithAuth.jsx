@@ -1,7 +1,7 @@
 // useGetRequestWithAuth.js
-import axios from "axios";
+import axios from 'axios';
 
-import { useAuth } from "./useAuth";
+import { useAuth } from './useAuth';
 
 /**
  * `useGetRequestWithAuth` is a custom React hook designed to perform authenticated GET requests.
@@ -25,17 +25,17 @@ import { useAuth } from "./useAuth";
  */
 
 const useGetRequestWithAuth = (url, options = {}) => {
-  const { authentication } = useAuth();
+  const authentication = useAuth();
 
   const fetchData = async () => {
     if (!authentication) {
-      return null;
+      return null; // Throw error
     }
 
     return axios.get(url, {
       headers: {
         Authorization: `Bearer ${authentication.accessToken}`,
-        ...(typeof options?.headers === "object" ? options.headers : {}),
+        ...(typeof options?.headers === 'object' ? options.headers : {}),
       },
       ...options,
     });
@@ -44,4 +44,4 @@ const useGetRequestWithAuth = (url, options = {}) => {
   return fetchData;
 };
 
-export default useGetRequestWithAuth;
+export { useGetRequestWithAuth };

@@ -1,8 +1,8 @@
-import axios from "axios";
+import axios from 'axios';
 
-import { REGISTRATION_URL } from "../constants";
+import { REGISTRATION_URL } from '../constants';
 
-export const signUp = ({ userDetails }) => {
+export const signUp = ({ authentication, userDetails }) => {
   if (!userDetails) {
     return null;
   }
@@ -15,8 +15,10 @@ export const signUp = ({ userDetails }) => {
   }
 
   return axios
-    .post(authentication.authURL + REGISTRATION_URL, userDetails)
-    .then((res) => {
+    .post(authentication.authURL + REGISTRATION_URL, userDetails, {
+      withCredentials: true,
+    })
+    .then(res => {
       if (res.status !== 200) {
         throw new Error(res.data.message);
       }

@@ -1,7 +1,7 @@
 // usePostRequestWithAuth.js
-import axios from "axios";
+import axios from 'axios';
 
-import { useAuth } from "./useAuth";
+import { useAuth } from './useAuth';
 
 /**
  * `usePostRequestWithAuth` is a custom React hook designed to perform authenticated POST requests.
@@ -24,24 +24,24 @@ import { useAuth } from "./useAuth";
  *       with an `accessToken` property.
  */
 
-const usePostRequestWithAuth = (url, data, options = {}) => {
-  const { authentication } = useAuth();
+const usePostRequestWithAuth = (url, options = {}) => {
+  const authentication = useAuth();
 
-  const postData = async () => {
+  const postData = async data => {
     if (!authentication) {
-      return null;
+      return null; // Throw error here
     }
 
     return axios.post(url, data, {
+      ...options,
       headers: {
         Authorization: `Bearer ${authentication.accessToken}`,
-        ...(typeof options?.headers === "object" ? options.headers : {}),
+        ...(typeof options?.headers === 'object' ? options.headers : {}),
       },
-      ...options,
     });
   };
 
   return postData;
 };
 
-export default usePostRequestWithAuth;
+export { usePostRequestWithAuth };
