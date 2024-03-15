@@ -44,4 +44,4 @@ const usePostRequestWithAuth = (url, data, options = {}) => {
   return postData;
 };
 
-export default usePostRequestWithAuth;
+export { usePostRequestWithAuth };

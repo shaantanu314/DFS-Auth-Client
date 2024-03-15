@@ -44,4 +44,4 @@ const useGetRequestWithAuth = (url, options = {}) => {
   return fetchData;
 };
 
-export default useGetRequestWithAuth;
+export { useGetRequestWithAuth };

@@ -5,4 +5,4 @@ export * from "./src/hooks";
 export * from "./src/utils/signUp";
 
 // Provider
-export { AuthProvider } from "./src/context/AuthContext";
+export * from "./src/context/AuthContext";
